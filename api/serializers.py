@@ -74,3 +74,8 @@ class SellerRegisterSerializer(serializers.ModelSerializer):
         SellerProfile.objects.create(user=user ,first_name=first_name,
             last_name=last_name , contact = contact , store_name = store_name , gst_number = gst_number)
         return user
+
+class UserProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ['id', 'username', 'email', 'is_customer', 'is_seller']

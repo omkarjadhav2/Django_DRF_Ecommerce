@@ -7,16 +7,16 @@ class CustomUser(AbstractUser):
     is_customer = models.BooleanField(default=False)
 
 class CustomerProfile(models.Model):
-    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE , related_name="customer_profile")
     first_name = models.CharField(max_length=255, blank=True)
     last_name = models.CharField(max_length=255, blank=True)
     contact = models.CharField(max_length=15, blank=True)
     
     def __str__(self):
-        return f"{self.first_name} ({self.last_name})"
+        return f"Customer: {self.user.username}"
     
 class SellerProfile(models.Model):
-    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE , related_name="seller_profile")
     first_name = models.CharField(max_length=255, blank=True)
     last_name = models.CharField(max_length=255, blank=True)
     contact = models.CharField(max_length=15, blank=True)
@@ -25,7 +25,7 @@ class SellerProfile(models.Model):
     verified = models.BooleanField(default=False)
     
     def __str__(self):
-        return f"{self.first_name} ({self.last_name}) of {self.store_name}"
+        return f"Seller: {self.store_name} ({self.user.username})"
     
     
 

@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import CustomUser
 from django.contrib.auth.admin import UserAdmin
-from .models import CustomUser,SellerProfile , CustomerProfile
+from .models import CustomUser,SellerProfile , CustomerProfile , Note
 
 @admin.register(CustomUser)
 class CustomUserAdmin(UserAdmin):
@@ -20,3 +20,5 @@ class SellerProfileAdmin(admin.ModelAdmin):
 @admin.register(SellerProfile)
 class CustomerProfileAdmin(admin.ModelAdmin):
     list_display = ['first_name', 'last_name', 'contact' ,'store_name']
+    
+admin.site.register(Note)

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import CustomUser,CustomerProfile,SellerProfile
+from .models import CustomUser,CustomerProfile,SellerProfile , Note
 
 class CustomerRegisterSerializer(serializers.ModelSerializer):
     password2 = serializers.CharField(write_only=True)
@@ -79,3 +79,10 @@ class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
         fields = ['id', 'username', 'email', 'is_customer', 'is_seller']
+        
+
+class NoteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Note
+        fields = ['id', 'description']
+        

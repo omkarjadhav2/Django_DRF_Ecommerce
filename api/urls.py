@@ -5,13 +5,13 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 urlpatterns = [
-    path('register/', RegisterView.as_view()),
-    path('login/', LoginView.as_view()),
+    path("auth/register/customer/", CustomerRegisterView.as_view(), name="customer-register"),
+    path("auth/register/seller/", SellerRegisterView.as_view(), name="seller-register"),
+    path("auth/login/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
+    path("auth/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
+    path("auth/logout/", LogoutView.as_view(), name="logout"),
     path('notes/', get_notes),
     path('profile/', ProfileView.as_view()),
-    path('logout/', logout),
-    path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('authenticated/', is_logged_in),
 
 ]

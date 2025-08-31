@@ -11,57 +11,42 @@ from .models import Note
 User = get_user_model()
 
 
-
-class RegisterView(APIView):
+class CustomerRegisterView(APIView):
     permission_classes = [AllowAny]
 
     def post(self, request):
-        user_type = request.data.get('user_type')
-        if user_type == 'customer':
-            serializer = CustomerRegisterSerializer(data=request.data)
-            success_message = "Customer registered successfully"
-        elif user_type == 'seller':
-            serializer = SellerRegisterSerializer(data=request.data)
-            success_message = "Seller registered successfully"
-        else:
-            return Response({"user_type": ["This field is required and must be 'customer' or 'seller'."]}, status=status.HTTP_400_BAD_REQUEST)
-
+        serializer = CustomerRegisterSerializer(data=request.data)
         if serializer.is_valid():
-            user = serializer.save()
-            return Response({
-                "message": success_message,
-                "status": True,
-                "data": {
-                    "username": user.username,
-                    "email": user.email,
-                }
-            }, status=status.HTTP_201_CREATED)
-        
+            serializer.save()
+            return Response({"message": "Customer registered successfully"}, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class LoginView(APIView):
+
+class SellerRegisterView(APIView):
     permission_classes = [AllowAny]
 
     def post(self, request):
-        username = request.data.get('username')
-        password = request.data.get('password')
+        serializer = SellerRegisterSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({"message": "Seller registered successfully"}, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-        if username:
-            try:
-                user = User.objects.get(username=username)  
-            except User.DoesNotExist:
-                return Response({"message": "Invalid Credentials"}, status=status.HTTP_400_BAD_REQUEST)
 
-        user = authenticate(username=username, password=password)
+class LogoutView(APIView):
+    permission_classes = [IsAuthenticated]
 
-        if user:
-            refresh = RefreshToken.for_user(user)
-            return Response({
-                "access_token": str(refresh.access_token),
-                "refresh_token": str(refresh)
-            }, status=status.HTTP_200_OK)
+    def post(self, request):
+        try:
+            refresh_token = request.data.get("refresh")
+            token = RefreshToken(refresh_token)
+            token.blacklist()
+            return Response({"message": "Logged out successfully"}, status=status.HTTP_205_RESET_CONTENT)
+        except Exception as e:
+            return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
-        return Response({"message": "Invalid Credentials"}, status=status.HTTP_400_BAD_REQUEST)
+
+
 
 
 class ProfileView(APIView):
@@ -71,21 +56,6 @@ class ProfileView(APIView):
         serializer = UserProfileSerializer(request.user)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-
-
-        
-@api_view(['POST'])
-def logout(request):
-    try:
-        res = Response()
-        res.data = {"success":True}
-        res.delete_cookie('access_token' , path="/" ,samesite ="None")
-        res.delete_cookie('refresh_token' , path="/" ,samesite ="None")
-        return res
-    
-    except:
-        return Response({"success":False})
-    
     
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])

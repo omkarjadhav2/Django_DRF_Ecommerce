@@ -1,12 +1,13 @@
 from django.contrib import admin
 from .models import CustomUser
 from django.contrib.auth.admin import UserAdmin
-from .models import CustomUser,SellerProfile , CustomerProfile , Note
+from .models import CustomUser , CustomerProfile , Note , Product , ProductImage , ProductSize
+
 
 @admin.register(CustomUser)
 class CustomUserAdmin(UserAdmin):
     model = CustomUser
-    list_display = ['username', 'email', 'is_seller', 'is_customer', 'is_staff']
+    list_display = ['username', 'email', 'is_customer', 'is_staff']
     fieldsets = UserAdmin.fieldsets + (
         ('User Type', {'fields': ('is_seller', 'is_customer')}),
     )
@@ -17,8 +18,8 @@ class CustomUserAdmin(UserAdmin):
 class SellerProfileAdmin(admin.ModelAdmin):
     list_display = ['first_name', 'last_name', 'contact']
     
-@admin.register(SellerProfile)
-class CustomerProfileAdmin(admin.ModelAdmin):
-    list_display = ['first_name', 'last_name', 'contact' ,'store_name']
     
 admin.site.register(Note)
+admin.site.register(Product)
+admin.site.register(ProductImage)
+admin.site.register(ProductSize)

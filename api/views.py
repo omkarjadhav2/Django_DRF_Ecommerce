@@ -5,7 +5,7 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.decorators import api_view , permission_classes
 from django.contrib.auth import authenticate, get_user_model
-from .serializers import  CustomerRegisterSerializer, SellerRegisterSerializer,UserProfileSerializer , NoteSerializer
+from .serializers import  CustomerRegisterSerializer,UserProfileSerializer , NoteSerializer , ProductSerializer
 from .models import Note
 
 User = get_user_model()
@@ -19,17 +19,6 @@ class CustomerRegisterView(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response({"message": "Customer registered successfully"}, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-class SellerRegisterView(APIView):
-    permission_classes = [AllowAny]
-
-    def post(self, request):
-        serializer = SellerRegisterSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response({"message": "Seller registered successfully"}, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -70,3 +59,13 @@ def get_notes(request):
 def is_logged_in(request):
     serializer = UserProfileSerializer(request.user, many=False)
     return Response(serializer.data)
+
+class ProductUploadView(APIView):
+    permission_classes = [AllowAny]
+
+    def post(self, request):
+        serializer = ProductSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({"message": "product added succesfully"}, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

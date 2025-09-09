@@ -1,12 +1,12 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.permissions import IsAuthenticated, AllowAny , IsAdminUser
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.decorators import api_view , permission_classes
 from django.contrib.auth import authenticate, get_user_model
 from .serializers import  CustomerRegisterSerializer,UserProfileSerializer , NoteSerializer , ProductSerializer
-from .models import Note
+from .models import Note , Product
 
 User = get_user_model()
 
@@ -61,7 +61,7 @@ def is_logged_in(request):
     return Response(serializer.data)
 
 class ProductUploadView(APIView):
-    permission_classes = [AllowAny]
+    permission_classes = [IsAdminUser]
 
     def post(self, request):
         serializer = ProductSerializer(data=request.data)
@@ -69,3 +69,10 @@ class ProductUploadView(APIView):
             serializer.save()
             return Response({"message": "product added succesfully"}, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class ProductListView(APIView):
+    permission_classes = [AllowAny]
+    def get(self , request):
+        products = Product.objects.all()
+        serializer = ProductSerializer(products , many = True)
+        return Response(serializer.data) 

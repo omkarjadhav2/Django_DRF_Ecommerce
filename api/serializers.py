@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import CustomUser,CustomerProfile , Note , Product , ProductSize , ProductImage
+from .models import CustomUser,CustomerProfile , Note , Product  , ProductImage , Size
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
@@ -51,19 +51,33 @@ class ImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProductImage
         fields = ["url"]
+        
+class SizeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Size
+        fields = ["id", "value"]
 
 class ProductSerializer(serializers.ModelSerializer):
     images = ImageSerializer(many=True)
+    sizes = SizeSerializer(many=True)
     
     class Meta:
         model = Product
-        fields = ["id", "name", "brand", "prevprice", "newprice", "category","images","material","color","stock","subCategory","bestseller","description"]
+        fields = ["id", "name", "brand", "prevprice", "newprice", "category",
+                  "images","material","color","stock","subCategory","bestseller","description","sizes"]
         
     def create(self, validated_data):
         print("before:" , validated_data)
+        sizes_data = validated_data.pop("sizes", [])
+
         images_data = validated_data.pop("images", [])
         print("after :" , validated_data)
         product = Product.objects.create(**validated_data)
+        
+        for size in sizes_data:
+            size_obj, _ = Size.objects.get_or_create(value=size["value"])
+            product.sizes.add(size_obj)
+
         for img in images_data:
             ProductImage.objects.create(product=product, **img)
         return product

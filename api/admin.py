@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import CustomUser
 from django.contrib.auth.admin import UserAdmin
-from .models import CustomUser , CustomerProfile , Note , Product , ProductImage , ProductSize
+from .models import CustomUser , CustomerProfile , Note , Product , ProductImage 
 
 
 @admin.register(CustomUser)
@@ -24,4 +24,3 @@ class ProductAdmin(admin.ModelAdmin):
         
 admin.site.register(Note)
 admin.site.register(ProductImage)
-admin.site.register(ProductSize)

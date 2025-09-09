@@ -13,5 +13,6 @@ urlpatterns = [
     path('profile/', ProfileView.as_view()),
     path('authenticated/', is_logged_in),
     path('upload/', ProductUploadView.as_view() ,  name="upload products"),
+    path('products/', ProductListView.as_view() ,  name="all products"),
 
 ]

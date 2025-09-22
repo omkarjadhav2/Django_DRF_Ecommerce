@@ -5,8 +5,8 @@ from rest_framework.permissions import IsAuthenticated, AllowAny , IsAdminUser
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.decorators import api_view , permission_classes
 from django.contrib.auth import authenticate, get_user_model
-from .serializers import  CustomerRegisterSerializer,UserProfileSerializer , NoteSerializer , ProductSerializer
-from .models import Note , Product
+from .serializers import  CustomerRegisterSerializer,UserProfileSerializer , NoteSerializer , ProductSerializer, AddressSerializer
+from .models import Note , Product , Address
 
 User = get_user_model()
 
@@ -75,4 +75,18 @@ class ProductListView(APIView):
     def get(self , request):
         products = Product.objects.all()
         serializer = ProductSerializer(products , many = True)
-        return Response(serializer.data) 
+        return Response(serializer.data)
+    
+class AddressView(APIView):
+    permission_classes = [IsAuthenticated]
+    def get(self, request):
+        addresses = Address.objects.filter(user=request.user)
+        serializer = AddressSerializer(addresses, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        serializer = AddressSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({"message": "Address added successfully"}, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST) 

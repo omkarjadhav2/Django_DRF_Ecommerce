@@ -43,6 +43,10 @@ class AddressSerializer(serializers.ModelSerializer):
         model = Address
         fields = "__all__"
         
+    def create(self, validated_data):
+        address = Address.objects.create(**validated_data)
+        return address
+        
         
 class UserProfileSerializer(serializers.ModelSerializer):
     addresses = AddressSerializer(many=True, read_only=True)

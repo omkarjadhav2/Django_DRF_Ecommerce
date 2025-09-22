@@ -1,8 +1,6 @@
 from rest_framework import serializers
-from .models import CustomUser,CustomerProfile , Note , Product  , ProductImage , Size
-from django.contrib.auth import get_user_model
+from .models import CustomUser,CustomerProfile , Note , Product , ProductImage , Size , Address, Product, Cart, CartItem, Order, OrderItem, Payment
 
-User = get_user_model()
 
 class CustomerRegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
@@ -11,7 +9,7 @@ class CustomerRegisterSerializer(serializers.ModelSerializer):
     contact = serializers.CharField(write_only=True, required=False)
 
     class Meta:
-        model = User
+        model = CustomUser
         fields = ("username", "email", "password", "first_name", "last_name", "contact")
 
     def create(self, validated_data):
@@ -20,7 +18,7 @@ class CustomerRegisterSerializer(serializers.ModelSerializer):
         last_name = validated_data.pop("last_name", "")
         contact = validated_data.pop("contact", "")
 
-        user = User.objects.create_user(
+        user = CustomUser.objects.create_user(
             username=validated_data["username"],
             email=validated_data["email"],
             password=password,
@@ -34,12 +32,24 @@ class CustomerRegisterSerializer(serializers.ModelSerializer):
         )
         return user
 
+class CustomerProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomerProfile
+        fields = ['first_name', 'last_name', 'contact']
+        
 
-
+class AddressSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Address
+        fields = "__all__"
+        
+        
 class UserProfileSerializer(serializers.ModelSerializer):
+    addresses = AddressSerializer(many=True, read_only=True)
+    customer_profile = CustomerProfileSerializer(read_only=True)
     class Meta:
         model = CustomUser
-        fields = ['id', 'username', 'email', 'is_customer']
+        fields = ['id', 'username', 'email', 'is_customer',"customer_profile","addresses"]
         
 
 class NoteSerializer(serializers.ModelSerializer):
@@ -56,6 +66,9 @@ class SizeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Size
         fields = ["id", "value"]
+        extra_kwargs = {
+            "value": {"validators": []},  
+        }
 
 class ProductSerializer(serializers.ModelSerializer):
     images = ImageSerializer(many=True)
@@ -82,3 +95,4 @@ class ProductSerializer(serializers.ModelSerializer):
             ProductImage.objects.create(product=product, **img)
         return product
     
+

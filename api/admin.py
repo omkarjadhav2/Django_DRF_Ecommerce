@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import CustomUser
 from django.contrib.auth.admin import UserAdmin
-from .models import CustomUser , CustomerProfile , Note , Product , ProductImage 
+from .models import CustomUser , CustomerProfile , Note , Product , ProductImage , Address
 
 
 @admin.register(CustomUser)
@@ -15,6 +15,10 @@ class CustomUserAdmin(UserAdmin):
 class CustomerProfileAdmin(admin.ModelAdmin):
     list_display = ['first_name', 'last_name', 'contact']
     
+class ExperienceInline(admin.TabularInline):
+    model = Address
+    extra = 1
+    
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
@@ -24,3 +28,4 @@ class ProductAdmin(admin.ModelAdmin):
         
 admin.site.register(Note)
 admin.site.register(ProductImage)
+admin.site.register(Address)

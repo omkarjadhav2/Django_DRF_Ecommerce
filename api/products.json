@@ -1,4 +1,4 @@
- [
+[
   {
     "_id": "aaaaa",
     "name": "Puma Unisex Smashic Sneaker",
@@ -17,11 +17,7 @@
     "category": "Unisex",
     "subCategory": "Sneaker",
     "description": "Brand Color:-White-Matte Silver, Material:-Synthetic Care , Instructions:-Wipe with a clean dry cloth",
-    "sizes": [
-      8,
-      9,
-      10
-    ],
+    "sizes": [8, 9, 10],
     "date": 1716634345448,
     "bestseller": true
   },
@@ -43,11 +39,7 @@
     "category": "Men",
     "subCategory": "Sneaker",
     "description": "Model Name:-Melanite Slip on , Brand Color:-Cool Dark Gray-Black-White, Material:-Synthetic, Care Instructions:-Wipe with a clean dry cloth",
-    "sizes": [
-      8,
-      9,
-      10
-    ],
+    "sizes": [8, 9, 10],
     "date": 1716634345448,
     "bestseller": true
   },
@@ -60,17 +52,11 @@
     "material": "Rubber",
     "color": "Black",
     "stock": 15,
-    "image": [
-      "https://m.media-amazon.com/images/I/51UYpEUzvbL._SY695_.jpg"
-    ],
+    "image": ["htt.cops://m.media-amazonm/images/I/51UYpEUzvbL._SY695_.jpg"],
     "category": "Women",
     "subCategory": "Sport",
     "description": "Model Name:-Melanite Slip on , Brand Color:-Cool Dark Gray-Black-White, Material:-Synthetic, Care Instructions:-Wipe with a clean dry cloth",
-    "sizes": [
-      8,
-      9,
-      10
-    ],
+    "sizes": [8, 9, 10],
     "date": 1716634345448,
     "bestseller": true
   },
@@ -83,17 +69,11 @@
     "material": "Synthetic",
     "color": "Black",
     "stock": 15,
-    "image": [
-      "https://m.media-amazon.com/images/I/71rYxtbE8SS._SX695_.jpg"
-    ],
+    "image": ["https://m.media-amazon.com/images/I/71rYxtbE8SS._SX695_.jpg"],
     "category": "Men",
     "subCategory": "Formal",
     "description": "Model Name:-Melanite Slip on , Brand Color:-Cool Dark Gray-Black-White, Material:-Synthetic, Care Instructions:-Wipe with a clean dry cloth",
-    "sizes": [
-      8,
-      9,
-      10
-    ],
+    "sizes": [8, 9, 10],
     "date": 1716634345448,
     "bestseller": true
   },
@@ -106,17 +86,11 @@
     "material": "Leather",
     "color": "Rose",
     "stock": 15,
-    "image": [
-      "https://m.media-amazon.com/images/I/51qoRd-kFgL._SY695_.jpg"
-    ],
+    "image": ["https://m.media-amazon.com/images/I/51qoRd-kFgL._SY695_.jpg"],
     "category": "Women",
     "subCategory": "Formal",
     "description": "Model Name:-Melanite Slip on , Brand Color:-Cool Dark Gray-Black-White, Material:-Synthetic, Care Instructions:-Wipe with a clean dry cloth",
-    "sizes": [
-      8,
-      9,
-      10
-    ],
+    "sizes": [8, 9, 10],
     "date": 1716634345448,
     "bestseller": true
   },
@@ -129,17 +103,11 @@
     "material": "Mesh",
     "color": "PINK MAUVE",
     "stock": 15,
-    "image": [
-      "https://m.media-amazon.com/images/I/81XBGJZISWL._SY695_.jpg"
-    ],
+    "image": ["https://m.media-amazon.com/images/I/81XBGJZISWL._SY695_.jpg"],
     "category": "Women",
     "subCategory": "Sport",
     "description": "Lightweight & Breathable : Exclusive design and durable materials every step feels light and breezy. Breathable, free-moving fabrics which adjust according to your foot and creates an astoundingly easy-going experience.",
-    "sizes": [
-      8,
-      9,
-      10
-    ],
+    "sizes": [8, 9, 10],
     "date": 1716634345448,
     "bestseller": true
   },
@@ -152,17 +120,11 @@
     "material": "Mesh",
     "color": "Black",
     "stock": 15,
-    "image": [
-      "https://m.media-amazon.com/images/I/61-G2UDgjiL._SY695_.jpg"
-    ],
+    "image": ["https://m.media-amazon.com/images/I/61-G2UDgjiL._SY695_.jpg"],
     "category": "Men",
     "subCategory": "Sport",
     "description": "Model Name:-Melanite Slip on , Brand Color:-Cool Dark Gray-Black-White, Material:-Synthetic, Care Instructions:-Wipe with a clean dry cloth",
-    "sizes": [
-      8,
-      9,
-      10
-    ],
+    "sizes": [8, 9, 10],
     "date": 1716634345448,
     "bestseller": true
   },
@@ -175,17 +137,11 @@
     "material": "Leather",
     "color": "Green",
     "stock": 15,
-    "image": [
-      "https://m.media-amazon.com/images/I/618oRhKCDDL._SY695_.jpg"
-    ],
+    "image": ["https://m.media-amazon.com/images/I/618oRhKCDDL._SY695_.jpg"],
     "category": "Kids",
     "subCategory": "Sneaker",
     "description": "Model Name:-Melanite Slip on , Brand Color:-Cool Dark Gray-Black-White, Material:-Synthetic, Care Instructions:-Wipe with a clean dry cloth",
-    "sizes": [
-      8,
-      9,
-      10
-    ],
+    "sizes": [8, 9, 10],
     "date": 1716634345448,
     "bestseller": true
   },
@@ -198,17 +154,11 @@
     "material": "Mesh",
     "color": "Orange",
     "stock": 15,
-    "image": [
-      "https://m.media-amazon.com/images/I/81jiiVfUMIL._SY625_.jpg"
-    ],
+    "image": ["https://m.media-amazon.com/images/I/81jiiVfUMIL._SY625_.jpg"],
     "category": "Kids",
     "subCategory": "Sport",
     "description": "Model Name:-Melanite Slip on , Brand Color:-Cool Dark Gray-Black-White, Material:-Synthetic, Care Instructions:-Wipe with a clean dry cloth",
-    "sizes": [
-      8,
-      9,
-      10
-    ],
+    "sizes": [8, 9, 10],
     "date": 1716634345448,
     "bestseller": true
   },
@@ -221,17 +171,11 @@
     "material": "Rubber",
     "color": "Blue",
     "stock": 15,
-    "image": [
-      "https://m.media-amazon.com/images/I/714e0EhSzBL._SY500_.jpg"
-    ],
+    "image": ["https://m.media-amazon.com/images/I/714e0EhSzBL._SY500_.jpg"],
     "category": "Kids",
     "subCategory": "Sneaker",
     "description": "Model Name:-Melanite Slip on , Brand Color:-Cool Dark Gray-Black-White, Material:-Synthetic, Care Instructions:-Wipe with a clean dry cloth",
-    "sizes": [
-      8,
-      9,
-      10
-    ],
+    "sizes": [8, 9, 10],
     "date": 1716634345448,
     "bestseller": true
   },
@@ -244,17 +188,11 @@
     "material": "Polyurethane",
     "color": "Black",
     "stock": 15,
-    "image": [
-      "https://m.media-amazon.com/images/I/61gkiVtXXUL._SY625_.jpg"
-    ],
+    "image": ["https://m.media-amazon.com/images/I/61gkiVtXXUL._SY625_.jpg"],
     "category": "Men",
     "subCategory": "Sandal",
     "description": "Model Name:-Melanite Slip on , Brand Color:-Cool Dark Gray-Black-White, Material:-Synthetic, Care Instructions:-Wipe with a clean dry cloth",
-    "sizes": [
-      8,
-      9,
-      10
-    ],
+    "sizes": [8, 9, 10],
     "date": 1716634345448,
     "bestseller": true
   },
@@ -267,17 +205,11 @@
     "material": "Polyurethane",
     "color": "BLUE",
     "stock": 15,
-    "image": [
-      "https://m.media-amazon.com/images/I/51VtiRvv3rL._SY500_.jpg"
-    ],
+    "image": ["https://m.media-amazon.com/images/I/51VtiRvv3rL._SY500_.jpg"],
     "category": "Men",
     "subCategory": "Sandal",
     "description": "Model Name:-Melanite Slip on , Brand Color:-Cool Dark Gray-Black-White, Material:-Synthetic, Care Instructions:-Wipe with a clean dry cloth",
-    "sizes": [
-      8,
-      9,
-      10
-    ],
+    "sizes": [8, 9, 10],
     "date": 1716634345448,
     "bestseller": false
   },
@@ -290,17 +222,11 @@
     "material": "Polyurethane",
     "color": "Off White",
     "stock": 15,
-    "image": [
-      "https://m.media-amazon.com/images/I/71kZwI4bP2L._SY625_.jpg"
-    ],
+    "image": ["https://m.media-amazon.com/images/I/71kZwI4bP2L._SY625_.jpg"],
     "category": "Women",
     "subCategory": "Sandal",
     "description": "Model Name:-Melanite Slip on , Brand Color:-Cool Dark Gray-Black-White, Material:-Synthetic, Care Instructions:-Wipe with a clean dry cloth",
-    "sizes": [
-      8,
-      9,
-      10
-    ],
+    "sizes": [8, 9, 10],
     "date": 1716634345448,
     "bestseller": false
   },
@@ -313,17 +239,11 @@
     "material": "Acrylic",
     "color": "BLACK",
     "stock": 15,
-    "image": [
-      "https://m.media-amazon.com/images/I/51DzRy1+MDL._SY625_.jpg"
-    ],
+    "image": ["https://m.media-amazon.com/images/I/51DzRy1+MDL._SY625_.jpg"],
     "category": "Women",
     "subCategory": "Sandal",
     "description": "Model Name:-Melanite Slip on , Brand Color:-Cool Dark Gray-Black-White, Material:-Synthetic, Care Instructions:-Wipe with a clean dry cloth",
-    "sizes": [
-      8,
-      9,
-      10
-    ],
+    "sizes": [8, 9, 10],
     "date": 1716634345448,
     "bestseller": false
   },
@@ -336,17 +256,11 @@
     "material": "Polyurethane",
     "color": "BLUE",
     "stock": 15,
-    "image": [
-      "https://m.media-amazon.com/images/I/61sIFcQZeiL._SY625_.jpg"
-    ],
+    "image": ["https://m.media-amazon.com/images/I/61sIFcQZeiL._SY625_.jpg"],
     "category": "Kids",
     "subCategory": "Sandal",
     "description": "Model Name:-Melanite Slip on , Brand Color:-Cool Dark Gray-Black-White, Material:-Synthetic, Care Instructions:-Wipe with a clean dry cloth",
-    "sizes": [
-      8,
-      9,
-      10
-    ],
+    "sizes": [8, 9, 10],
     "date": 1716634345448,
     "bestseller": false
   },
@@ -359,17 +273,11 @@
     "material": "Polyurethane",
     "color": "BLUE",
     "stock": 15,
-    "image": [
-      "https://m.media-amazon.com/images/I/61L-cADIolS._SX695_.jpg"
-    ],
+    "image": ["https://m.media-amazon.com/images/I/61L-cADIolS._SX695_.jpg"],
     "category": "Men",
     "subCategory": "Formal",
     "description": "Model Name:-Melanite Slip on , Brand Color:-Cool Dark Gray-Black-White, Material:-Synthetic, Care Instructions:-Wipe with a clean dry cloth",
-    "sizes": [
-      8,
-      9,
-      10
-    ],
+    "sizes": [8, 9, 10],
     "date": 1716634345448,
     "bestseller": false
   },
@@ -382,17 +290,11 @@
     "material": "Rubber",
     "color": "BLUE",
     "stock": 15,
-    "image": [
-      "https://m.media-amazon.com/images/I/71Z9XdlDzjL._SX500_.jpg"
-    ],
+    "image": ["https://m.media-amazon.com/images/I/71Z9XdlDzjL._SX500_.jpg"],
     "category": "Unisex",
     "subCategory": "Slippers",
     "description": "Model Name:-Melanite Slip on , Brand Color:-Cool Dark Gray-Black-White, Material:-Synthetic, Care Instructions:-Wipe with a clean dry cloth",
-    "sizes": [
-      8,
-      9,
-      10
-    ],
+    "sizes": [8, 9, 10],
     "date": 1716634345448,
     "bestseller": false
   },
@@ -405,17 +307,11 @@
     "material": "Polyurethane",
     "color": "Tan",
     "stock": 15,
-    "image": [
-      "https://m.media-amazon.com/images/I/51lS0fPjgaL._SY500_.jpg"
-    ],
+    "image": ["https://m.media-amazon.com/images/I/51lS0fPjgaL._SY500_.jpg"],
     "category": "Men",
     "subCategory": "Formal",
     "description": "Model Name:-Melanite Slip on , Brand Color:-Cool Dark Gray-Black-White, Material:-Synthetic, Care Instructions:-Wipe with a clean dry cloth",
-    "sizes": [
-      8,
-      9,
-      10
-    ],
+    "sizes": [8, 9, 10],
     "date": 1716634345448,
     "bestseller": false
   },
@@ -428,17 +324,11 @@
     "material": "Synthetic",
     "color": "BROWN",
     "stock": 15,
-    "image": [
-      "https://m.media-amazon.com/images/I/61Y5dLpvLtL._SX500_.jpg"
-    ],
+    "image": ["https://m.media-amazon.com/images/I/61Y5dLpvLtL._SX500_.jpg"],
     "category": "Men",
     "subCategory": "Slippers",
     "description": "Model Name:-Melanite Slip on , Brand Color:-Cool Dark Gray-Black-White, Material:-Synthetic, Care Instructions:-Wipe with a clean dry cloth",
-    "sizes": [
-      8,
-      9,
-      10
-    ],
+    "sizes": [8, 9, 10],
     "date": 1716634345448,
     "bestseller": false
   }

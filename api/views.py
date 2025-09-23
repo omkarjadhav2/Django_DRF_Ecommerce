@@ -5,8 +5,8 @@ from rest_framework.permissions import IsAuthenticated, AllowAny , IsAdminUser
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.decorators import api_view , permission_classes
 from django.contrib.auth import authenticate, get_user_model
-from .serializers import  CustomerRegisterSerializer,UserProfileSerializer , NoteSerializer , ProductSerializer, AddressSerializer
-from .models import Note , Product , Address
+from .serializers import  CustomerRegisterSerializer,UserProfileSerializer , NoteSerializer , ProductSerializer, AddressSerializer , CartItemSerializer
+from .models import Note , Product , Address , Cart
 
 User = get_user_model()
 
@@ -79,6 +79,7 @@ class ProductListView(APIView):
     
 class AddressView(APIView):
     permission_classes = [IsAuthenticated]
+
     def get(self, request):
         addresses = Address.objects.filter(user=request.user)
         serializer = AddressSerializer(addresses, many=True)
@@ -87,6 +88,16 @@ class AddressView(APIView):
     def post(self, request):
         serializer = AddressSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
+            serializer.save(user=request.user)
             return Response({"message": "Address added successfully"}, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST) 
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+class AddToCartView(APIView):
+    permission_classes = [IsAuthenticated]
+    def post(self, request):
+        cart = Cart.objects.get(user = request.user)
+        serializer = CartItemSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save(cart = cart)
+            return Response({"message": "Product added to cart successfully"}, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

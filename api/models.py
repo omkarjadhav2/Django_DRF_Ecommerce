@@ -54,6 +54,7 @@ class ProductImage(models.Model):
         return f"url for {self.product}"
 
 class Address(models.Model):
+    id = models.AutoField(primary_key=True)
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="addresses")
     full_name = models.CharField(max_length=255)
     phone_number = models.CharField(max_length=15)
@@ -78,6 +79,7 @@ class Cart(models.Model):
 class CartItem(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name="items")
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    size = models.PositiveIntegerField(null=True , blank=True)
     quantity = models.PositiveIntegerField(default=1)
 
     def __str__(self):

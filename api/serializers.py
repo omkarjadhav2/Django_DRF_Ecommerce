@@ -41,11 +41,11 @@ class CustomerProfileSerializer(serializers.ModelSerializer):
 class AddressSerializer(serializers.ModelSerializer):
     class Meta:
         model = Address
-        fields = "__all__"
-        
+        exclude = ["user"]  
+
     def create(self, validated_data):
-        address = Address.objects.create(**validated_data)
-        return address
+        return Address.objects.create(**validated_data)
+
         
         
 class UserProfileSerializer(serializers.ModelSerializer):
@@ -100,3 +100,62 @@ class ProductSerializer(serializers.ModelSerializer):
         return product
     
 
+class CartItemSerializer(serializers.ModelSerializer):
+    product = ProductSerializer(read_only=True)   # for response
+    product_id = serializers.PrimaryKeyRelatedField(
+        queryset=Product.objects.all(), write_only=True
+    )
+
+    class Meta:
+        model = CartItem
+        fields = ["id", "product", "product_id", "size", "quantity"]
+
+    def create(self, validated_data):
+        product = validated_data.pop("product_id")
+        cart_item = CartItem.objects.create(product=product, **validated_data)
+        return cart_item
+
+
+
+class CartSerializer(serializers.ModelSerializer):
+    items = CartItemSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Cart
+        fields = ["id", "user", "items", "created_at", "updated_at"]
+
+
+class OrderItemSerializer(serializers.ModelSerializer):
+    product = ProductSerializer(read_only=True)
+
+    class Meta:
+        model = OrderItem
+        fields = ["id", "product", "quantity", "price_at_purchase"]
+
+
+class OrderSerializer(serializers.ModelSerializer):
+    items = OrderItemSerializer(many=True, read_only=True)
+    address = AddressSerializer(read_only=True)
+
+    class Meta:
+        model = Order
+        fields = [
+            "id",
+            "user",
+            "address",
+            "total_amount",
+            "payment_method",
+            "payment_status",
+            "order_status",
+            "items",
+            "created_at",
+            "updated_at",
+        ]
+
+
+class PaymentSerializer(serializers.ModelSerializer):
+    order = OrderSerializer(read_only=True)
+
+    class Meta:
+        model = Payment
+        fields = "__all__"

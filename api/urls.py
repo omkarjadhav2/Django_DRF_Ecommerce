@@ -15,5 +15,6 @@ urlpatterns = [
     path('upload/', ProductUploadView.as_view() ,  name="upload products"),
     path('products/', ProductListView.as_view() ,  name="all products"),
     path('address/', AddressView.as_view() ,  name="address"),
+    path('cart/', AddToCartView.as_view() ,  name="cart"),
 
 ]

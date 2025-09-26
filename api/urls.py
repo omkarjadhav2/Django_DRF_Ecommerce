@@ -16,5 +16,8 @@ urlpatterns = [
     path('products/', ProductListView.as_view() ,  name="all products"),
     path('address/', AddressView.as_view() ,  name="address"),
     path('cart/', AddToCartView.as_view() ,  name="cart"),
+    path('orders/', orderView.as_view() ,  name="orders"),
+    path("create-razorpay-order/", CreateRazorpayOrderView.as_view(), name="create_razorpay_order"),
+    path("verify-razorpay/", VerifyRazorpayPaymentView.as_view(), name="verify_razorpay"),
 
 ]

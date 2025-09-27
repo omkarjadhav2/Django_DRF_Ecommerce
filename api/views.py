@@ -6,7 +6,8 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.decorators import api_view , permission_classes
 from django.contrib.auth import authenticate, get_user_model
 from .serializers import  CustomerRegisterSerializer,UserProfileSerializer , NoteSerializer , ProductSerializer, AddressSerializer , CartItemSerializer , CartSerializer , OrderSerializer , PaymentSerializer
-from .models import Note , Product , Address , Cart , CartItem
+from .models import Note , Product , Address , Cart , CartItem,Order, OrderItem, Payment
+
 import razorpay
 from decimal import Decimal
 from django.conf import settings
@@ -100,15 +101,15 @@ class AddToCartView(APIView):
 
     def get(self, request):
         cart, _ = Cart.objects.get_or_create(user=request.user)
-        serializer = CartSerializer(cart)   # cart + nested items
+        serializer = CartSerializer(cart)   
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request):
-        cart, _ = Cart.objects.get_or_create(user=request.user)  # ✅ ensures cart exists
+        cart, _ = Cart.objects.get_or_create(user=request.user)  
         serializer = CartItemSerializer(data=request.data)
         if serializer.is_valid():
             cart_item = serializer.save(cart=cart)
-        # return updated cart so frontend can re-render from canonical source
+       
             cart_ser = CartSerializer(cart)
             return Response(cart_ser.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -116,7 +117,7 @@ class AddToCartView(APIView):
 
     def delete(self, request):
         product_id = request.data.get("product_id")
-        size = request.data.get("size")  # optional, if your cart has size/variant
+        size = request.data.get("size")  
 
         if not product_id:
             return Response(
@@ -152,7 +153,7 @@ class AddToCartView(APIView):
 
     def patch(self, request):
         product_id = request.data.get("product_id")
-        size = request.data.get("size")  # optional if variants
+        size = request.data.get("size")  
         quantity = request.data.get("quantity")
 
         if not product_id or quantity is None:
@@ -175,7 +176,6 @@ class AddToCartView(APIView):
                     status=status.HTTP_404_NOT_FOUND,
                 )
 
-            # If quantity is 0 or less, remove the item
             if int(quantity) <= 0:
                 item.delete()
                 cart_ser = CartSerializer(cart)
@@ -199,18 +199,17 @@ class AddToCartView(APIView):
                 {"error": "Cart not found"}, status=status.HTTP_404_NOT_FOUND
             )
             
-# api/views.py  (add these imports at top of file)
 
 
-# existing imports/models already in your file
-from .models import Cart, CartItem, Address, Order, OrderItem, Payment
 
-# Create Razorpay order (returns razorpay_order_id + amount + key_id)
+
+
+
 class CreateRazorpayOrderView(APIView):
     permission_classes = [IsAuthenticated]
 
     def post(self, request):
-        # get address_id from frontend (so we can attach when verifying)
+      
         address_id = request.data.get("address_id")
         if not address_id:
             return Response({"error": "address_id is required"}, status=status.HTTP_400_BAD_REQUEST)
@@ -224,23 +223,20 @@ class CreateRazorpayOrderView(APIView):
         if not cart_items.exists():
             return Response({"error": "Cart is empty"}, status=status.HTTP_400_BAD_REQUEST)
 
-        # compute total amount (use Decimal)
+        
         total = Decimal("0")
         for item in cart_items:
             total += item.product.newprice * item.quantity
 
-        # razorpay wants amount in paise (integer)
         amount_paise = int(total * 100)
 
-        # create razorpay client
         client = razorpay.Client(auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET))
 
-        # create razorpay order
         razorpay_order = client.order.create({
             "amount": amount_paise,
             "currency": "INR",
             "receipt": f"receipt_{request.user.id}_{cart.id}",
-            "payment_capture": 1,   # 1 => auto capture
+            "payment_capture": 1,   
         })
 
         return Response({
@@ -319,10 +315,9 @@ class VerifyRazorpayPaymentView(APIView):
             paid_at=None
         )
 
-        # clear cart
+    
         cart_items.delete()
 
-        # use serializers to return canonical representations
         order_data = OrderSerializer(order).data
         payment_data = PaymentSerializer(payment).data
 

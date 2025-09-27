@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import CustomUser , CustomerProfile , Note , Product , ProductImage , Address , Cart, CartItem,Order
+from .models import CustomUser , CustomerProfile , Note , Product , ProductImage , Address , Cart, CartItem,Order , OrderItem
 
 
    
@@ -8,6 +8,10 @@ from .models import CustomUser , CustomerProfile , Note , Product , ProductImage
 class CartItemInline(admin.TabularInline):
     model = CartItem
     extra = 1
+    
+class OrderItemInline(admin.TabularInline):
+    model = OrderItem
+    extra = 1    
     
 class AddressInline(admin.TabularInline):
     model = Address
@@ -40,10 +44,16 @@ class CustomerProfileAdmin(admin.ModelAdmin):
 class ProductAdmin(admin.ModelAdmin):
     list_display = ['name', 'brand', 'stock','newprice']
     
+@admin.register(Order)
+class OrderAdmin(admin.ModelAdmin):
+    model = Order
+    inlines = [OrderItemInline]
+    
+    
     
         
 admin.site.register(Note)
 admin.site.register(ProductImage)
 admin.site.register(Address)
 admin.site.register(CartItem)
-admin.site.register(Order)
+
